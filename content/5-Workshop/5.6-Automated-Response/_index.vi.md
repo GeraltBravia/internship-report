@@ -1,39 +1,78 @@
 ---
-title: 'Automated Response'
+title: 'Workshop'
 date: 2026-07-09
-weight: 56
-chapter: true
-pre: '<b>5.6.</b>'
+weight: 5
+chapter: false
+pre: ' <b> 5. </b> '
 ---
 
-# Tự động Ứng phó Sự cố
+## Triển khai AWS SOC Platform an toàn và tự động
 
-Trong chương này, chúng ta sẽ xây dựng cơ chế ứng phó sự cố tự động cho hệ thống SOC Platform bằng cách kết hợp các dịch vụ serverless của AWS. Khi các dịch vụ phát hiện mối đe dọa tạo ra Security Findings, hệ thống sẽ tự động kích hoạt quy trình xử lý, gửi thông báo và thực hiện các hành động phản ứng phù hợp nhằm giảm thiểu thời gian xử lý sự cố.
+Workshop này hướng dẫn bạn từng bước thiết kế, cấu hình và triển khai một nền tảng SOC (Security Operations Center) trên AWS. Giải pháp sử dụng các dịch vụ bảo mật, giám sát và tự động hóa của AWS để xây dựng một hệ thống có khả năng thu thập log, phát hiện mối đe dọa, cảnh báo và tự động ứng phó với các sự kiện bảo mật.
 
-Sau khi hoàn thành chương này, hệ thống sẽ có khả năng tự động nhận các sự kiện bảo mật, điều phối quy trình xử lý và thực hiện các hành động phản ứng mà không cần sự can thiệp thủ công.
+Toàn bộ hệ thống được triển khai theo mô hình nhiều lớp bảo mật (Defense in Depth), kết hợp giữa Network Security, Data Collection, Threat Detection, Automated Response và Monitoring Dashboard.
 
-## Các bước thực hiện
+## Architecture Overview
 
-### Tạo Amazon SNS Topics
+Đây là link repo github project soc: https://github.com/cuongngn142/project-soc-aws
 
-- Tạo các SNS Topics để gửi thông báo bảo mật.
-- Cấu hình Subscription nhận cảnh báo qua Email.
-- Chuẩn bị các kênh thông báo cho các mức độ sự cố khác nhau.
+Workshop này bao gồm các lớp chính:
 
-### Tạo AWS Lambda Functions
+1. **Edge Protection**
+   - AWS WAF.
+   - Amazon CloudFront.
+   - WAF Logging.
 
-- Tạo các Lambda Functions thực hiện các tác vụ phản ứng tự động.
-- Cấu hình IAM Execution Role và Environment Variables.
-- Triển khai mã nguồn cho các chức năng gửi thông báo và xử lý sự cố.
+2. **Network Foundation**
+   - Amazon VPC.
+   - Public/Private Subnets.
+   - Internet Gateway.
+   - NAT Gateway.
+   - Route Tables.
+   - Security Groups.
+   - Application Load Balancer.
 
-### Tạo AWS Step Functions State Machine
+3. **Data Collection and Storage**
+   - AWS KMS.
+   - Amazon S3.
+   - AWS CloudTrail.
+   - VPC Flow Logs.
+   - Amazon Athena.
+   - AWS Glue Database.
 
-- Khởi tạo State Machine điều phối quy trình ứng phó.
-- Xây dựng workflow thực thi các Lambda Functions theo từng mức độ cảnh báo.
-- Cấu hình IAM Role cho Step Functions.
+4. **Detection and Compliance**
+   - Amazon GuardDuty.
+   - IAM Access Analyzer.
+   - AWS Config.
+   - AWS Security Hub.
 
-### Tạo Amazon EventBridge Rules
+5. **Automated Response**
+   - Amazon SNS.
+   - AWS Lambda.
+   - AWS Step Functions.
+   - Amazon EventBridge.
 
-- Tạo EventBridge Rules để lắng nghe Security Findings từ các dịch vụ AWS.
-- Cấu hình Event Pattern cho GuardDuty và Security Hub.
-- Liên kết EventBridge với Step Functions để tự động kích hoạt quy trình ứng phó khi phát hiện sự cố.
+6. **Visibility and Dashboard**
+   - Amazon CloudWatch Dashboard.
+   - CloudWatch Metrics.
+   - CloudWatch Alarms.
+
+7. **Test and Validation**
+   - Kiểm tra luồng hoạt động của hệ thống.
+   - Kiểm tra khả năng phát hiện và phản ứng với sự kiện bảo mật.
+
+8. **Resource Cleanup**
+   - Xóa các tài nguyên AWS sau khi hoàn thành workshop.
+
+## Content
+
+1. [Workshop Overview](./5.1-Workshop-overview/)
+2. [Prerequisites](./5.2-Prerequisites/)
+3. [Network & Security Infrastructure](./5.3-Network-foundation/)
+4. [Data Collection and Storage](./5.4-Data-Collection-and-Storage/)
+5. [Detection and Compliance](./5.5-Detection-and-Compliance/)
+6. [Automated Response](./5.6-Automated-Response/)
+7. [Visibility and Dashboard](./5.7-Visibility-and-Dashboard/)
+8. [Edge Protection](./5.8-Edge-Protection/)
+9. [Test & Validation](./5.9-Test-Validation/)
+10. [Resource Cleanup](./5.10-Cleanup/)

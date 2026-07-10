@@ -1,39 +1,78 @@
 ---
-title: 'Automated Response'
+title: 'Workshop'
 date: 2026-07-09
-weight: 56
-chapter: true
-pre: '<b>5.6.</b>'
+weight: 5
+chapter: false
+pre: ' <b> 5. </b> '
 ---
 
-# Automated Response
+## Deploying a Secure and Automated AWS SOC Platform
 
-In this chapter, you will build an automated incident response mechanism for the SOC Platform by combining AWS serverless services. When threat detection services generate Security Findings, the platform will automatically trigger response workflows, send notifications, and perform appropriate response actions to minimize incident response time.
+This workshop guides you step by step through designing, configuring, and deploying a SOC (Security Operations Center) platform on AWS. The solution uses AWS security, monitoring, and automation services to build a platform capable of collecting logs, detecting threats, generating alerts, and automatically responding to security events.
 
-After completing this chapter, the platform will be able to automatically receive security events, orchestrate response workflows, and execute response actions without manual intervention.
+The entire platform is deployed using a Defense in Depth security model, combining multiple security layers including Network Security, Data Collection, Threat Detection, Automated Response, and Monitoring Dashboard.
 
-## Implementation steps
+## Architecture Overview
 
-### Create Amazon SNS Topics
+Project SOC GitHub Repository: https://github.com/cuongngn142/project-soc-aws
 
-- Create SNS Topics for sending security notifications.
-- Configure email subscriptions to receive alerts.
-- Prepare notification channels for different incident severity levels.
+This workshop includes the following main layers:
 
-### Create AWS Lambda Functions
+1. **Edge Protection**
+   - AWS WAF.
+   - Amazon CloudFront.
+   - WAF Logging.
 
-- Create Lambda Functions to perform automated response tasks.
-- Configure the IAM execution role and environment variables.
-- Deploy the function code for notification and incident response operations.
+2. **Network Foundation**
+   - Amazon VPC.
+   - Public/Private Subnets.
+   - Internet Gateway.
+   - NAT Gateway.
+   - Route Tables.
+   - Security Groups.
+   - Application Load Balancer.
 
-### Create an AWS Step Functions State Machine
+3. **Data Collection and Storage**
+   - AWS KMS.
+   - Amazon S3.
+   - AWS CloudTrail.
+   - VPC Flow Logs.
+   - Amazon Athena.
+   - AWS Glue Database.
 
-- Create a State Machine to orchestrate the response workflow.
-- Build a workflow that executes Lambda Functions based on the severity level of security findings.
-- Configure the IAM role for AWS Step Functions.
+4. **Detection and Compliance**
+   - Amazon GuardDuty.
+   - IAM Access Analyzer.
+   - AWS Config.
+   - AWS Security Hub.
 
-### Create Amazon EventBridge Rules
+5. **Automated Response**
+   - Amazon SNS.
+   - AWS Lambda.
+   - AWS Step Functions.
+   - Amazon EventBridge.
 
-- Create EventBridge Rules to listen for Security Findings from AWS services.
-- Configure event patterns for GuardDuty and Security Hub.
-- Connect EventBridge to AWS Step Functions to automatically trigger the response workflow when security incidents are detected.
+6. **Visibility and Dashboard**
+   - Amazon CloudWatch Dashboard.
+   - CloudWatch Metrics.
+   - CloudWatch Alarms.
+
+7. **Test and Validation**
+   - Validate the system workflow.
+   - Verify the ability to detect and respond to security events.
+
+8. **Resource Cleanup**
+   - Remove AWS resources after completing the workshop.
+
+## Content
+
+1. [Workshop Overview](./5.1-Workshop-overview/)
+2. [Prerequisites](./5.2-Prerequisites/)
+3. [Network & Security Infrastructure](./5.3-Network-foundation/)
+4. [Data Collection and Storage](./5.4-Data-Collection-and-Storage/)
+5. [Detection and Compliance](./5.5-Detection-and-Compliance/)
+6. [Automated Response](./5.6-Automated-Response/)
+7. [Visibility and Dashboard](./5.7-Visibility-and-Dashboard/)
+8. [Edge Protection](./5.8-Edge-Protection/)
+9. [Test & Validation](./5.9-Test-Validation/)
+10. [Resource Cleanup](./5.10-Cleanup/)
